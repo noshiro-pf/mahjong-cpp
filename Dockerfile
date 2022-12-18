@@ -1,6 +1,8 @@
 FROM ubuntu:20.04
 LABEL maintainer "pystyle"
 
+WORKDIR /app
+
 ENV LC_ALL C.UTF-8
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -19,5 +21,12 @@ RUN apt-get install -y --no-install-recommends openssh-server && \
 
 RUN rm -rf /var/lib/apt/lists/*
 
-EXPOSE 22
-CMD service ssh start && /bin/bash
+COPY . /app
+
+WORKDIR /app/build
+RUN cmake ..
+RUN make -j$(nproc)
+
+EXPOSE 8888
+# CMD /bin/bash
+# CMD service ssh start && /bin/bash
