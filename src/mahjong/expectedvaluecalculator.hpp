@@ -197,7 +197,7 @@ inline bool operator<(const CacheKey &lhs, const CacheKey &rhs)
 class ExpectedValueCalculator
 {
     /**
-     * @brief 期待値 (和了確率) が同じ場合はこの値が高い牌を優先して打牌する。
+     * @brief 期待値（和了確率）が同じ場合はこの値が高い牌を優先して打牌する。
      */
     static inline const std::vector<int> DiscardPriorities = {
         5, /*! 一萬 */

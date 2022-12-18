@@ -24,8 +24,8 @@ ExpectedValueCalculator::ExpectedValueCalculator()
     , calc_uradora_(false)
     , calc_akatile_tumo_(false)
     , maximize_win_prob_(false)
-    , discard_cache_(5) // 0(聴牌) ~ 4(4向聴)
-    , draw_cache_(5)    // 0(聴牌) ~ 4(4向聴)
+    , discard_cache_(5) // 0（聴牌）＝4（4向聴）
+    , draw_cache_(5)    // 0（聴牌）＝4（4向聴）
 {
     make_uradora_table();
 }
@@ -441,7 +441,7 @@ std::vector<double> ExpectedValueCalculator::get_score(const Hand &hand, int win
 }
 
 /**
- * @brief 自摸する。(手変わりを考慮しない)
+ * @brief 自摸する。（手変わりを考慮しない）
  *
  * @param[in] n_extra_tumo
  * @param[in] syanten 向聴数
@@ -538,13 +538,13 @@ ExpectedValueCalculator::draw_without_tegawari(int n_extra_tumo, int syanten, Ha
 }
 
 /**
- * @brief 自摸する。(手変わりを考慮する)
+ * @brief 自摸する。（手変わりを考慮する）
  *
  * @param[in] n_extra_tumo
  * @param[in] syanten 向聴数
  * @param[in] hand 手牌
  * @param[in] counts 各牌の残り枚数
- * @return (各巡目の聴牌確率, 各巡目の和了確率, 各巡目の期待値)
+ * @returns (各巡目の聴牌確率, 各巡目の和了確率, 各巡目の期待値)
  */
 std::tuple<std::vector<double>, std::vector<double>, std::vector<double>>
 ExpectedValueCalculator::draw_with_tegawari(int n_extra_tumo, int syanten, Hand &hand,
