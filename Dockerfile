@@ -29,4 +29,4 @@ RUN make -j$(nproc)
 
 EXPOSE 8888
 # CMD /bin/bash
-# CMD service ssh start && /bin/bash
+CMD service ssh start && /bin/bash

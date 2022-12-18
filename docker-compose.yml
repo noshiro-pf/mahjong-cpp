@@ -5,6 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    # command: cd /app/build/src/server && ./server
     ports:
       - "8888:8888"
     volumes:
