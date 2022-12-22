@@ -43,7 +43,7 @@ Miscellaneous programs about Japanese Mahjong
 
 ## How to build（ビルド方法）
 
-Clone repogitory and build program.
+Clone repository and build program.
 
 ```bash
 git clone https://github.com/nekobean/mahjong-cpp.git
