@@ -24,9 +24,9 @@ RUN rm -rf /var/lib/apt/lists/*
 COPY . /app
 
 WORKDIR /app/build
-RUN cmake ..
+RUN cmake -DBUILD_SERVER=ON ..
 RUN make -j$(nproc)
 
 EXPOSE 8888
-# CMD /bin/bash
+
 CMD service ssh start && /bin/bash

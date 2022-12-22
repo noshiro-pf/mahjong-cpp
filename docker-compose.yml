@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    # command: cd /app/build/src/server && ./server
+    command: service ssh start && /bin/bash
     ports:
       - "8888:8888"
     volumes:
