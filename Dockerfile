@@ -27,6 +27,6 @@ WORKDIR /app/build
 RUN cmake -DBUILD_SERVER=ON ..
 RUN make -j$(nproc)
 
-EXPOSE 8888
+EXPOSE 22
 
 CMD service ssh start && /bin/bash
