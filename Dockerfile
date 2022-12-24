@@ -14,19 +14,32 @@ RUN apt-get update && \
     git \
     libboost-all-dev
 
+# build mahjong-cpp
+RUN git clone https://github.com/nekobean/mahjong-cpp.git
+WORKDIR /app/mahjong-cpp/build
+
+RUN cmake -DBUILD_SERVER=ON ..
+RUN make -j$(nproc)
+
+
 # Install SSH server
-RUN apt-get install -y --no-install-recommends openssh-server && \
-    echo "root:root" | chpasswd && \
-    sed -i "s/#PermitRootLogin prohibit-password/PermitRootLogin yes/" /etc/ssh/sshd_config
+RUN apt-get install -y --no-install-recommends openssh-server
+RUN echo "root:root" | chpasswd
+RUN sed -i "s/#PermitRootLogin prohibit-password/PermitRootLogin yes/" /etc/ssh/sshd_config
+
+# RUN mkdir /var/run/sshd
+# # # SSH login fix. Otherwise user is kicked off after login
+# RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
+
+# ENV NOTVISIBLE "in users profile"
+# RUN echo "export VISIBLE=now" >> /etc/profile
+
 
 RUN rm -rf /var/lib/apt/lists/*
 
-COPY . /app
-
-WORKDIR /app/build
-RUN cmake -DBUILD_SERVER=ON ..
-RUN make -j$(nproc)
 
 EXPOSE 22
 
 CMD service ssh start && /bin/bash
+
+WORKDIR /app/mahjong-cpp/build/src/server
